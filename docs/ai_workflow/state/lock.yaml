@@ -1,13 +1,8 @@
 # Verrou de travail global — mode stable séquentiel
 
-locked: true
-active_run: BL-007
-active_role: developpeur
-active_tool: cursor
-branch: bl/007-cli-bootstrap
-locked_at: "2026-06-29T19:00:00Z"
-last_heartbeat_at: "2026-06-29T19:00:00Z"
-expires_at: "2026-06-29T21:00:00Z"
-lease_duration_minutes: 120
-status: IN_PROGRESS
-last_session_note: "BL-007 CLI migrations + AuthCatalogBootstrap"
+locked: false
+active_run: null
+active_role: null
+branch: version/v0.1.0
+status: IDLE
+last_session_note: "BL-007 TECH_REVIEW_PASSED — PR #11 merged"

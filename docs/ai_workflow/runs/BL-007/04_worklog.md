@@ -23,4 +23,6 @@
 - 10 tests (7 CLI + 2 unit bootstrap + 1 intégration).
 - `uv run nox -s all` : 92 tests, 96,51 %.
 
-**Handoff Dev → QA** : PR en cours.
+Verdict : **QA_PASSED**. Voir `05_tests_report.md`.
+
+**Handoff Relecteur → BL-008** : voir `07_handoff.md`.

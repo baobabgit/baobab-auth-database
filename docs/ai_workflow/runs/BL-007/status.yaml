@@ -1,19 +1,19 @@
 run_id: BL-007
 version: v0.1.0
-status: IN_PROGRESS
-step: 09_implementation
-current_role: developpeur
-previous_role: architecte
-branch: bl/007-cli-bootstrap
-started_at: "2026-06-29T19:00:00Z"
-updated_at: "2026-06-29T18:08:00Z"
+status: TECH_REVIEW_PASSED
+step: 13_review
+current_role: relecteur
+branch: version/v0.1.0
+pull_request: "https://github.com/baobabgit/baobab-auth-database/pull/11"
+ci_run: "https://github.com/baobabgit/baobab-auth-database/actions/runs/28392833113"
 gates:
   spec: passed
   design: passed
-  dev: in_progress
-  qa: pending
-  review: pending
-  security: pending
+  dev: passed
+  qa: passed
+  review: passed
+  security: skipped
+  ci: passed
 features:
   - FEAT-005.1
   - FEAT-005.2
