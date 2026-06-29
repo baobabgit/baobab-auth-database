@@ -7,7 +7,33 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ## [Non publié]
 
+## [0.1.0] - 2026-06-29
+
 ### Ajouté
+
+- Package ``baobab_auth_database`` : persistance SQLAlchemy pour Baobab Auth.
+- ``AuthDatabaseSettings``, factories engine/session, convention de nommage ORM.
+- 9 modèles ORM ``auth_*``, migration Alembic ``0001``, cohérence migration ↔ ORM.
+- Mappers ORM ↔ entités ``baobab-auth-core``.
+- Repositories synchrones (ports ``UserRepository``, ``RoleRepository``,
+  ``PermissionRepository``, ``SessionRepository``, ``AuditRepository``) + profils + JWK.
+- ``SqlAlchemyAuthUnitOfWork`` (commit/rollback, 7 repositories).
+- ``AuthDatabaseCli`` (``upgrade``, ``downgrade``, ``current``, ``history``, ``bootstrap``).
+- ``AuthCatalogBootstrap`` idempotent via ``DefaultAuthCatalog`` du core.
+- Tests contrat core (``tests/contracts/``) et rapport d'intégration core 0.5.1.
+
+### Modifié
+
+- Contrat public ``__all__`` : settings, factories, UoW, bootstrap, CLI, exceptions.
+
+### Technique
+
+- Dépendance ``baobab-auth-core>=0.5.1,<0.6.0``.
+- Couverture tests ≥ 95 % imposée.
+
+---
+
+## Historique template
 
 - `scripts/sync_from_template.sh` : script de synchronisation sélective des
   fichiers infra (CI, règles IA, outils) depuis le template source vers un projet

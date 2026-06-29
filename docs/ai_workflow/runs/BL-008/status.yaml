@@ -1,0 +1,19 @@
+run_id: BL-008
+version: v0.1.0
+status: TECH_REVIEW_PASSED
+step: 13_review
+branch: version/v0.1.0
+pull_request: "https://github.com/baobabgit/baobab-auth-database/pull/12"
+ci_run: "https://github.com/baobabgit/baobab-auth-database/actions/runs/28394201188"
+gates:
+  spec: passed
+  design: passed
+  dev: passed
+  qa: passed
+  review: passed
+  security: skipped
+  ci: passed
+features:
+  - FEAT-006.1
+user_stories:
+  - US-006

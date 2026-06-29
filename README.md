@@ -1,6 +1,6 @@
-# Example Package
+# baobab-auth-database
 
-[![Integration](https://github.com/your-org/your-repo/actions/workflows/integration.yml/badge.svg)](https://github.com/your-org/your-repo/actions/workflows/integration.yml)
+[![CI](https://github.com/baobabgit/baobab-auth-database/actions/workflows/ci.yml/badge.svg)](https://github.com/baobabgit/baobab-auth-database/actions/workflows/ci.yml)
 [![Release](https://github.com/your-org/your-repo/actions/workflows/release.yml/badge.svg)](https://github.com/your-org/your-repo/actions/workflows/release.yml)
 [![PyPI version](https://img.shields.io/pypi/v/example-package.svg)](https://pypi.org/project/example-package/)
 [![Python versions](https://img.shields.io/pypi/pyversions/example-package.svg)](https://pypi.org/project/example-package/)
@@ -36,11 +36,9 @@
 
 ## À propos
 
-Ce dépôt est un **template de développement**. Il fixe des règles claires
-(orienté objet, 1 classe par fichier, typage strict, tests ≥ 95 %, doc RST) et
-les rend applicables par **trois assistants IA** via une source unique de vérité
-(`AGENTS.md`). Objectif : produire un code homogène **sans rappeler les règles à
-chaque prompt**.
+Couche de **persistance SQLAlchemy** pour l'écosystème Baobab Auth : modèles ORM,
+migrations Alembic, repositories synchrones, Unit of Work, bootstrap catalogue
+via ``DefaultAuthCatalog`` du core. Aucune logique HTTP ni métier applicative.
 
 ## Fonctionnalités
 
@@ -128,7 +126,18 @@ cp .env.example .env
 | `APP_ENV`   | Environnement applicatif         | `development` |
 | `LOG_LEVEL` | Niveau de journalisation         | `INFO`        |
 
-## Sécurité
+### CLI migrations et bootstrap
+
+Variable principale : ``AUTH_DB_DATABASE_URL`` (schéma ``sqlite`` ou ``postgresql``).
+
+```bash
+uv run baobab-auth-db upgrade    # migrations Alembic → head
+uv run baobab-auth-db bootstrap  # seed DefaultAuthCatalog (idempotent)
+uv run baobab-auth-db current    # révision courante
+```
+
+Guide détaillé : [`docs/guides/how-to/cli-migrations.rst`](docs/guides/how-to/cli-migrations.rst).
+
 
 - **Aucun secret** dans le code ni dans Git : `.env` est gitignoré ; seul
   `.env.example` (sans valeurs) est versionné.
