@@ -56,5 +56,5 @@ queue:
     title: "Tests contrat core et documentation v0.1.0"
     version_target: v0.1.0
     priority: P1
-    status: IN_PROGRESS
+    status: DONE
     depends_on: [BL-007]

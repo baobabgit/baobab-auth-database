@@ -1,13 +1,7 @@
 # Verrou de travail global — mode stable séquentiel
 
-locked: true
-active_run: BL-008
-active_role: developpeur
-active_tool: cursor
-branch: bl/008-contract-tests-docs
-locked_at: "2026-06-29T20:15:00Z"
-last_heartbeat_at: "2026-06-29T20:15:00Z"
-expires_at: "2026-06-29T22:15:00Z"
-lease_duration_minutes: 120
-status: IN_PROGRESS
-last_session_note: "BL-008 tests contrat core + doc v0.1.0"
+locked: false
+active_run: null
+branch: version/v0.1.0
+status: IDLE
+last_session_note: "BL-008 TECH_REVIEW_PASSED — MVP v0.1.0 INTERNAL_VALIDATED"
