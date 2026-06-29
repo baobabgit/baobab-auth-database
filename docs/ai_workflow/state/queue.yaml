@@ -35,7 +35,7 @@ queue:
     title: "Repositories synchrones SQLAlchemy"
     version_target: v0.1.0
     priority: P0
-    status: READY
+    status: DONE
     depends_on: [BL-003, BL-004]
 
   - id: BL-006
