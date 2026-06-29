@@ -1,0 +1,1 @@
+"""Package migrations Alembic embarquées."""
