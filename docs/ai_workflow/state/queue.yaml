@@ -1,60 +1,39 @@
-# File de backlogs — v0.1.0 Stabilisation MVP database
+# File de backlogs — v0.2.0 Catalogue RBAC versionné
 
-version_active: v0.1.0
+version_active: v0.2.0
 
 queue:
-  - id: BL-001
-    title: "Configuration AuthDatabaseSettings et factories SQLAlchemy"
-    version_target: v0.1.0
+  - id: BL-009
+    title: "Table auth_catalog_versions (ORM + migration)"
+    version_target: v0.2.0
     priority: P0
     status: DONE
     depends_on: []
 
-  - id: BL-002
-    title: "Modèles ORM auth (9 tables)"
-    version_target: v0.1.0
+  - id: BL-010
+    title: "Checksum déterministe et diagnostics catalogue"
+    version_target: v0.2.0
     priority: P0
     status: DONE
-    depends_on: [BL-001]
+    depends_on: [BL-009]
 
-  - id: BL-003
-    title: "Migrations Alembic et cohérence schéma"
-    version_target: v0.1.0
+  - id: BL-011
+    title: "Bootstrap étendu et enregistrement version catalogue"
+    version_target: v0.2.0
     priority: P0
     status: DONE
-    depends_on: [BL-002]
+    depends_on: [BL-010]
 
-  - id: BL-004
-    title: "Mappers ORM vers entités core"
-    version_target: v0.1.0
+  - id: BL-012
+    title: "CLI catalog check, seed, report"
+    version_target: v0.2.0
     priority: P1
     status: DONE
-    depends_on: [BL-002]
+    depends_on: [BL-011]
 
-  - id: BL-005
-    title: "Repositories synchrones SQLAlchemy"
-    version_target: v0.1.0
-    priority: P0
-    status: DONE
-    depends_on: [BL-003, BL-004]
-
-  - id: BL-006
-    title: "SqlAlchemyAuthUnitOfWork"
-    version_target: v0.1.0
-    priority: P0
-    status: DONE
-    depends_on: [BL-005]
-
-  - id: BL-007
-    title: "CLI migrations et bootstrap DefaultAuthCatalog"
-    version_target: v0.1.0
+  - id: BL-013
+    title: "Tests, docs et validation v0.2.0"
+    version_target: v0.2.0
     priority: P1
     status: DONE
-    depends_on: [BL-006]
-
-  - id: BL-008
-    title: "Tests contrat core et documentation v0.1.0"
-    version_target: v0.1.0
-    priority: P1
-    status: DONE
-    depends_on: [BL-007]
+    depends_on: [BL-012]

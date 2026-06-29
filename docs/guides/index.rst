@@ -18,5 +18,6 @@ Organisés selon la taxonomie **Diátaxis** :
 
    how-to/ajouter-une-classe
    how-to/cli-migrations
+   how-to/catalog-diagnostics
    how-to/integration-validation
    how-to/template-sync

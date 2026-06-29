@@ -6,6 +6,9 @@
 from sqlalchemy.engine import Engine
 
 from baobab_auth_database.models.orm.auth_audit_event_model import AuthAuditEventModel
+from baobab_auth_database.models.orm.auth_catalog_version_model import (
+    AuthCatalogVersionModel,
+)
 from baobab_auth_database.models.orm.auth_jwk_key_model import AuthJwkKeyModel
 from baobab_auth_database.models.orm.auth_orm_base import AuthOrmBase
 from baobab_auth_database.models.orm.auth_permission_model import AuthPermissionModel
@@ -35,6 +38,7 @@ class AuthOrmRegistry:
         AuthSessionModel,
         AuthAuditEventModel,
         AuthJwkKeyModel,
+        AuthCatalogVersionModel,
     )
 
     @classmethod

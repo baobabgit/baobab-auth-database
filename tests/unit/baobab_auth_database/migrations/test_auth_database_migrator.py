@@ -30,7 +30,7 @@ class TestAuthDatabaseMigrator:
         assert migrator.current_revision() is None
 
         migrator.upgrade_head()
-        assert migrator.current_revision() == "0001"
+        assert migrator.current_revision() == "0002"
 
         migrator.downgrade_base()
         assert migrator.current_revision() is None
@@ -40,7 +40,7 @@ class TestAuthDatabaseMigrator:
     ) -> None:
         migrator = AuthDatabaseMigrator(sqlite_settings)
         history = migrator.history_ids()
-        assert history == ("0001",)
+        assert history == ("0001", "0002")
 
     def test_FEAT_002_2_config_property(
         self, sqlite_settings: AuthDatabaseSettings

@@ -1,0 +1,8 @@
+id: BL-009
+title: "Table auth_catalog_versions (ORM + migration)"
+status: DONE
+step: merged
+role: developpeur_python
+started_at: "2026-06-28T20:00:00Z"
+completed_at: "2026-06-28T21:00:00Z"
+last_heartbeat_at: "2026-06-28T21:00:00Z"

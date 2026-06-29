@@ -14,6 +14,9 @@ from baobab_auth_database.factories.sqlalchemy_session_factory import (
 from baobab_auth_database.repositories.sqlalchemy_audit_repository import (
     SqlAlchemyAuditRepository,
 )
+from baobab_auth_database.repositories.sqlalchemy_catalog_version_repository import (
+    SqlAlchemyCatalogVersionRepository,
+)
 from baobab_auth_database.repositories.sqlalchemy_jwk_key_repository import (
     SqlAlchemyJwkKeyRepository,
 )
@@ -54,6 +57,7 @@ class SqlAlchemyAuthUnitOfWork:
         self._sessions: SqlAlchemySessionRepository | None = None
         self._audit: SqlAlchemyAuditRepository | None = None
         self._jwk_keys: SqlAlchemyJwkKeyRepository | None = None
+        self._catalog_versions: SqlAlchemyCatalogVersionRepository | None = None
 
     def __enter__(self) -> Self:
         """Ouvre une session SQLAlchemy dédiée à l'unité de travail.
@@ -166,6 +170,19 @@ class SqlAlchemyAuthUnitOfWork:
         return self._audit
 
     @property
+    def catalog_versions(self) -> SqlAlchemyCatalogVersionRepository:
+        """Repository versions catalogue RBAC.
+
+        :returns: Repository des traces ``auth_catalog_versions``.
+        :raises RuntimeError: Si la session n'est pas ouverte.
+        """
+        if self._catalog_versions is None:
+            self._catalog_versions = SqlAlchemyCatalogVersionRepository(
+                self._require_session()
+            )
+        return self._catalog_versions
+
+    @property
     def jwk_keys(self) -> SqlAlchemyJwkKeyRepository:
         """Repository clés JWK (snapshot local).
 
@@ -199,3 +216,4 @@ class SqlAlchemyAuthUnitOfWork:
         self._sessions = None
         self._audit = None
         self._jwk_keys = None
+        self._catalog_versions = None

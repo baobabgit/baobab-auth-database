@@ -1,0 +1,23 @@
+# Matrice de compatibilité inter-librairies — v0.2.0
+
+library: baobab-auth-database
+version: v0.2.0
+
+validated_dependencies:
+  - name: baobab-auth-core
+    version: v0.5.1
+    status: PENDING
+    integration_method: pypi
+    ref: "0.5.1"
+    validation_type:
+      - import_tests
+      - contract_tests
+      - catalog_diagnostics_tests
+
+validated_consumers:
+  - name: baobab-auth-admin
+    version: null
+    status: PENDING
+    integration_method: git_ref
+    ref: version/v0.2.0
+    notes: Validation CLI autonome si admin indisponible

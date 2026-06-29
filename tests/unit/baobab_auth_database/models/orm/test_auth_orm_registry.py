@@ -13,8 +13,8 @@ class TestAuthOrmRegistry:
     """Tests FEAT-002.1 — registre et création de schéma."""
 
     def test_FEAT_002_1_neuf_modeles_enregistres(self) -> None:
-        assert len(AuthOrmRegistry.MODELS) == 9
-        assert len(AuthOrmRegistry.table_names()) == 9
+        assert len(AuthOrmRegistry.MODELS) == 10
+        assert len(AuthOrmRegistry.table_names()) == 10
 
     def test_FEAT_002_1_create_all_sqlite(self) -> None:
         settings = AuthDatabaseSettings()

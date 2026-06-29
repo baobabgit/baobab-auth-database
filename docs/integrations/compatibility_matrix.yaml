@@ -2,7 +2,7 @@
 # Mise à jour par le Release Manager lors de chaque validation d'intégration.
 
 library: baobab-auth-database
-version: v0.1.0
+version: v0.2.0
 
 validated_consumers: []
 
@@ -15,9 +15,15 @@ validated_dependencies:
     validation_type:
       - import_tests
       - contract_tests
-      - integration_tests
-    report: docs/integrations/reports/baobab-auth-core-v0.5.1__baobab-auth-database-v0.1.0.md
+      - catalog_diagnostics_tests
+    report: docs/integrations/reports/baobab-auth-core-v0.5.1__baobab-auth-database-v0.2.0.md
+    validated_features:
+      - DefaultAuthCatalog import and seed
+      - catalog check seed report CLI
+      - auth_catalog_versions persistence
+      - deterministic catalog checksum
+      - SERVICE role without permissions
+      - SUPER_ADMIN all permissions from core
     notes: >
-      Ports UserRepository, RoleRepository, PermissionRepository,
-      SessionRepository, AuditRepository, UnitOfWork ; bootstrap
-      DefaultAuthCatalog idempotent ; CLI migrations.
+      Profil core_051 ; migration 0002 ; diagnostics read-only ;
+      validation CLI autonome (baobab-auth-admin indisponible).

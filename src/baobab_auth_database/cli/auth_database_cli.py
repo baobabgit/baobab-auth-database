@@ -1,16 +1,27 @@
 """CLI migrations Alembic et bootstrap catalogue.
 
-:spec: FEAT-005.1
+:spec: FEAT-005.1, FEAT-006.5
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from collections.abc import Callable
 from typing import TYPE_CHECKING
 
 from baobab_auth_database.bootstrap.auth_catalog_bootstrap import AuthCatalogBootstrap
+from baobab_auth_database.catalog.auth_catalog_compat_profile import (
+    AuthCatalogCompatProfile,
+)
+from baobab_auth_database.catalog.auth_catalog_diagnostic_report import (
+    AuthCatalogDiagnosticReport,
+)
+from baobab_auth_database.catalog.auth_catalog_diagnostics import AuthCatalogDiagnostics
+from baobab_auth_database.catalog.auth_catalog_report_formatter import (
+    AuthCatalogReportFormatter,
+)
 from baobab_auth_database.factories.sqlalchemy_session_factory import (
     SqlAlchemySessionFactory,
 )
@@ -29,7 +40,7 @@ if TYPE_CHECKING:
 class AuthDatabaseCli:
     """Point d'entrée CLI pour migrations et bootstrap catalogue.
 
-    :spec: FEAT-005.1
+    :spec: FEAT-005.1, FEAT-006.5
     """
 
     def __init__(
@@ -70,26 +81,42 @@ class AuthDatabaseCli:
         if args.command is None:
             parser.print_help()
             return 1
-        return self._dispatch(args.command, args)
+        return self._dispatch(args)
 
-    def _dispatch(self, command: str, args: argparse.Namespace) -> int:
+    def _dispatch(self, args: argparse.Namespace) -> int:
         """Route une sous-commande vers son handler typé.
 
-        :param command: Nom de la sous-commande.
         :param args: Arguments parsés.
         :returns: Code de sortie CLI.
         """
-        if command == "upgrade":
+        if args.command == "upgrade":
             return self._cmd_upgrade(args)
-        if command == "downgrade":
+        if args.command == "downgrade":
             return self._cmd_downgrade(args)
-        if command == "current":
+        if args.command == "current":
             return self._cmd_current(args)
-        if command == "history":
+        if args.command == "history":
             return self._cmd_history(args)
-        if command == "bootstrap":
+        if args.command == "bootstrap":
             return self._cmd_bootstrap(args)
-        msg = f"Unknown command: {command!r}"
+        if args.command == "catalog":
+            return self._dispatch_catalog(args)
+        msg = f"Unknown command: {args.command!r}"
+        raise ValueError(msg)
+
+    def _dispatch_catalog(self, args: argparse.Namespace) -> int:
+        """Route les sous-commandes ``catalog``.
+
+        :param args: Arguments parsés avec ``catalog_command``.
+        :returns: Code de sortie CLI.
+        """
+        if args.catalog_command == "check":
+            return self._cmd_catalog_check(args)
+        if args.catalog_command == "seed":
+            return self._cmd_catalog_seed(args)
+        if args.catalog_command == "report":
+            return self._cmd_catalog_report(args)
+        msg = f"Unknown catalog command: {args.catalog_command!r}"
         raise ValueError(msg)
 
     def _build_parser(self) -> argparse.ArgumentParser:
@@ -111,7 +138,55 @@ class AuthDatabaseCli:
             "bootstrap",
             help="Seed idempotent des rôles et permissions DefaultAuthCatalog.",
         )
+
+        catalog_parser = subparsers.add_parser(
+            "catalog",
+            help="Diagnostics et synchronisation catalogue RBAC.",
+        )
+        catalog_sub = catalog_parser.add_subparsers(dest="catalog_command")
+
+        check_parser = catalog_sub.add_parser(
+            "check",
+            help="Vérifie la conformité catalogue sans modifier la base.",
+        )
+        self._add_catalog_options(check_parser)
+
+        seed_parser = catalog_sub.add_parser(
+            "seed",
+            help="Synchronise le catalogue core (non destructif).",
+        )
+        self._add_catalog_options(seed_parser)
+        seed_parser.add_argument(
+            "--dry-run",
+            action="store_true",
+            help="Simule le seed sans écrire en base.",
+        )
+
+        report_parser = catalog_sub.add_parser(
+            "report",
+            help="Produit un rapport de diagnostic catalogue.",
+        )
+        self._add_catalog_options(report_parser)
+
         return parser
+
+    @staticmethod
+    def _add_catalog_options(parser: argparse.ArgumentParser) -> None:
+        """Ajoute les options communes aux commandes catalogue.
+
+        :param parser: Sous-parseur catalogue à enrichir.
+        """
+        parser.add_argument(
+            "--profile",
+            default=AuthCatalogCompatProfile.default(),
+            help="Profil de compatibilité (défaut: core_051).",
+        )
+        parser.add_argument(
+            "--format",
+            choices=("text", "json"),
+            default="text",
+            help="Format de sortie pour check et report.",
+        )
 
     def _cmd_upgrade(self, _args: argparse.Namespace) -> int:
         """Applique ``upgrade head``.
@@ -155,6 +230,92 @@ class AuthDatabaseCli:
         """
         self._bootstrap_factory(self._settings).run()
         return 0
+
+    def _cmd_catalog_check(self, args: argparse.Namespace) -> int:
+        """Vérifie la conformité catalogue.
+
+        :param args: Arguments CLI catalogue check.
+        :returns: 0 si conforme, 1 si divergent.
+        """
+        report = self._run_catalog_diagnostics(args.profile)
+        self._print_report(report, args.format)
+        return 0 if report.is_conform else 1
+
+    def _cmd_catalog_report(self, args: argparse.Namespace) -> int:
+        """Affiche un rapport catalogue.
+
+        :param args: Arguments CLI catalogue report.
+        :returns: 0 si succès.
+        """
+        report = self._run_catalog_diagnostics(args.profile)
+        self._print_report(report, args.format)
+        return 0
+
+    def _cmd_catalog_seed(self, args: argparse.Namespace) -> int:
+        """Synchronise le catalogue core.
+
+        :param args: Arguments CLI catalogue seed.
+        :returns: 0 si succès.
+        """
+        profile = AuthCatalogCompatProfile.validate(args.profile)
+        session_factory = SqlAlchemySessionFactory(self._settings)
+        bootstrap = AuthCatalogBootstrap(
+            session_factory,
+            compat_profile=profile,
+        )
+        result = bootstrap.run(dry_run=args.dry_run)
+        if args.format == "json":
+            print(
+                json.dumps(
+                    {
+                        "dry_run": result.dry_run,
+                        "permissions_added": result.permissions_added,
+                        "roles_added": result.roles_added,
+                        "roles_resynced": result.roles_resynced,
+                        "version_recorded": result.version_recorded,
+                    },
+                    sort_keys=True,
+                )
+            )
+        else:
+            mode = "dry-run" if result.dry_run else "applied"
+            print(
+                f"catalog seed ({mode}): "
+                f"permissions={result.permissions_added}, "
+                f"roles={result.roles_added}, "
+                f"resynced={result.roles_resynced}, "
+                f"version_recorded={result.version_recorded}"
+            )
+        return 0
+
+    def _run_catalog_diagnostics(self, profile: str) -> AuthCatalogDiagnosticReport:
+        """Exécute les diagnostics catalogue sur la base configurée.
+
+        :param profile: Profil de compatibilité demandé.
+        :returns: Rapport de diagnostic.
+        """
+        validated = AuthCatalogCompatProfile.validate(profile)
+        session_factory = SqlAlchemySessionFactory(self._settings)
+        session = session_factory.create()
+        try:
+            return AuthCatalogDiagnostics(
+                session,
+                compat_profile=validated,
+            ).run()
+        finally:
+            session.close()
+
+    @staticmethod
+    def _print_report(report: AuthCatalogDiagnosticReport, output_format: str) -> None:
+        """Affiche un rapport texte ou JSON.
+
+        :param report: Rapport de diagnostic.
+        :param output_format: ``text`` ou ``json``.
+        """
+        if output_format == "json":
+            print(json.dumps(report.to_dict(), sort_keys=True))
+            return
+        print(AuthCatalogReportFormatter().format(report))
 
     def _default_bootstrap_factory(
         self, settings: AuthDatabaseSettings

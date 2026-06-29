@@ -7,6 +7,23 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ## [Non publié]
 
+## [0.2.0] - 2026-06-28
+
+### Ajouté
+
+- Table ``auth_catalog_versions`` (migration Alembic ``0002``).
+- Checksum SHA-256 déterministe du ``DefaultAuthCatalog``.
+- ``AuthCatalogDiagnostics`` : détection dérives permissions, rôles et mappings.
+- Commandes CLI ``catalog check``, ``catalog seed``, ``catalog report``.
+- Profil de compatibilité ``core_051`` (core PyPI ``0.5.1``).
+- Option ``--format json`` et ``--dry-run`` sur le seed catalogue.
+- Guide ``docs/guides/how-to/catalog-diagnostics.rst``.
+
+### Modifié
+
+- ``AuthCatalogBootstrap`` : resync mappings rôles système + enregistrement version.
+- ``SqlAlchemyAuthUnitOfWork`` : repository ``catalog_versions``.
+
 ## [0.1.0] - 2026-06-29
 
 ### Ajouté
