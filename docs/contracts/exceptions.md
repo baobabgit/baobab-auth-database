@@ -1,13 +1,13 @@
 # Contrat — Exceptions publiques
 
-> Exceptions publiques de ce package.
+> Exceptions publiques de ``baobab-auth-database``.
 
 ## Exceptions déclarées
 
 | Exception | Module | Déclenchée par |
 |-----------|--------|----------------|
-| `ValueError` | builtins | `Greeter.__init__` si le nom est vide |
-| `KeyError` | builtins | `Repository.get` si l'élément n'existe pas |
+| `AuthDatabaseMappingError` | `exceptions.mapping` | Conversion ORM ↔ domaine invalide |
+| `AuthDatabasePersistenceError` | `exceptions.persistence` | Violation d'intégrité SQLAlchemy |
 
 ## Notes
 

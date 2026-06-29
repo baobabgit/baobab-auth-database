@@ -103,9 +103,23 @@ Si un consommateur signale un échec :
 - Une fois corrigé et mergé, recommencer la notification du consommateur.
 - Ne pas bumper la version : la correction reste sur ``version/vX.Y.Z``.
 
+Validation consommateur — baobab-auth-database (exemple)
+-------------------------------------------------------
+
+Ce package valide ``baobab-auth-core>=0.5.1,<0.6.0`` via :
+
+.. code-block:: bash
+
+   uv run pytest tests/contracts/ -v
+   uv run nox -s all
+
+Rapport produit :
+``docs/integrations/reports/baobab-auth-core-v0.5.1__baobab-auth-database-v0.1.0.md``
+
 Voir aussi
 ----------
 
+- :doc:`cli-migrations` — commandes CLI du package database
 - :doc:`ajouter-une-classe` — conventions OOP du projet
 - ``docs/contracts/`` — contrats publics de la librairie
 - ``docs/integrations/compatibility_matrix.yaml`` — matrice de compatibilité
