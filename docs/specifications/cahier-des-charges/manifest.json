@@ -1,0 +1,18 @@
+{
+  "project": "baobab-auth-database",
+  "final_version": "v1.0.0",
+  "files": [
+    "00_roadmap_global.md",
+    "01_cdc_v0_1_0_stabilisation_mvp.md",
+    "02_cdc_v0_2_0_catalogue_rbac_versionne.md",
+    "03_cdc_v0_3_0_sessions_jwk_revocation.md",
+    "04_cdc_v0_4_0_integration_api.md",
+    "05_cdc_v0_5_0_service_docker_postgresql.md",
+    "06_cdc_v0_6_0_admin_diagnostics.md",
+    "07_cdc_v0_7_0_audit_pagination_observabilite.md",
+    "08_cdc_v0_8_0_lifecycle_anonymisation.md",
+    "09_cdc_v0_9_0_release_candidate.md",
+    "10_cdc_v1_0_0_stable_finale.md",
+    "README.md"
+  ]
+}
