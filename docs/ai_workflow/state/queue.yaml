@@ -49,7 +49,7 @@ queue:
     title: "CLI migrations et bootstrap DefaultAuthCatalog"
     version_target: v0.1.0
     priority: P1
-    status: READY
+    status: IN_PROGRESS
     depends_on: [BL-006]
 
   - id: BL-008

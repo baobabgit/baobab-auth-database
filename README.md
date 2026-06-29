@@ -128,7 +128,18 @@ cp .env.example .env
 | `APP_ENV`   | Environnement applicatif         | `development` |
 | `LOG_LEVEL` | Niveau de journalisation         | `INFO`        |
 
-## Sécurité
+### CLI migrations et bootstrap
+
+Variable principale : ``AUTH_DB_DATABASE_URL`` (schéma ``sqlite`` ou ``postgresql``).
+
+```bash
+uv run baobab-auth-db upgrade    # migrations Alembic → head
+uv run baobab-auth-db bootstrap  # seed DefaultAuthCatalog (idempotent)
+uv run baobab-auth-db current    # révision courante
+```
+
+Guide détaillé : [`docs/guides/how-to/cli-migrations.rst`](docs/guides/how-to/cli-migrations.rst).
+
 
 - **Aucun secret** dans le code ni dans Git : `.env` est gitignoré ; seul
   `.env.example` (sans valeurs) est versionné.
