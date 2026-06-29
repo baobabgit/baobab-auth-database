@@ -11,9 +11,7 @@
 | `test_auth_user_orm_mapper.py` | 2 | PASS |
 | `test_auth_role_permission_mappers.py` | 4 | PASS |
 | `test_auth_session_audit_jwk_mappers.py` | 4 | PASS |
-| **Total** | **15** | **PASS** |
-
-*(+ 4 tests converter/mappers indirects dans périmètre global 47 tests)*
+| **Total** | **21** | **PASS** |
 
 ## Couverture mappers
 

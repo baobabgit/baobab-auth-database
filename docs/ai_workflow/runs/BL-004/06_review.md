@@ -31,11 +31,11 @@
 
 ## Actions de suivi (non bloquantes)
 
-| ID | Action | Cible |
-|----|--------|-------|
-| F4-1 | Tests `to_model` erreur | BL-005 ou patch |
-| F4-2 | Contrat public mappers | BL-008 |
-| F4-3 | Alignement core >=0.8.0 | version ultérieure |
+| ID | Action | Cible | Statut |
+|----|--------|-------|--------|
+| F4-1 | Tests `to_domain` erreur | BL-004 | **Clos** (2026-06-28) |
+| F4-2 | Contrat public mappers | BL-008 | Ouvert |
+| F4-3 | Alignement core >=0.8.0 | version ultérieure | Ouvert |
 
 ## Décision
 
