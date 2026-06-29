@@ -25,6 +25,9 @@ dependencies = [
     "alembic>=1.14.0",
 ]
 
+[project.scripts]
+baobab-auth-db = "baobab_auth_database.cli.auth_database_cli:AuthDatabaseCli.main"
+
 [project.urls]
 Homepage = "https://github.com/baobabgit/baobab-auth-database"
 Repository = "https://github.com/baobabgit/baobab-auth-database"

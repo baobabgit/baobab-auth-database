@@ -1,9 +1,21 @@
-id: BL-007
-title: "placeholder"
-status: TODO
-# Statuts : TODO → READY → IN_PROGRESS → DONE | BLOCKED
-step: null
-role: null
-started_at: null
-completed_at: null
-last_heartbeat_at: null
+run_id: BL-007
+version: v0.1.0
+status: IN_PROGRESS
+step: 09_implementation
+current_role: developpeur
+previous_role: architecte
+branch: bl/007-cli-bootstrap
+started_at: "2026-06-29T19:00:00Z"
+updated_at: "2026-06-29T18:08:00Z"
+gates:
+  spec: passed
+  design: passed
+  dev: in_progress
+  qa: pending
+  review: pending
+  security: pending
+features:
+  - FEAT-005.1
+  - FEAT-005.2
+user_stories:
+  - US-005
