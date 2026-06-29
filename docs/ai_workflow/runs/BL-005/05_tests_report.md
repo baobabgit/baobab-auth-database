@@ -7,11 +7,21 @@
 ## Commandes exécutées
 
 ```bash
+uv run nox -s all
+```
+
+Équivalent `make all` (Windows sans `make`) — session `all` : quality + tests + build +
+traceability.
+
+Détail des étapes :
+
+```bash
 uv run black --check src tests
 uv run ruff check src tests
 uv run mypy src
 uv run bandit -r src -c pyproject.toml
 uv run pytest --cov=src --cov-report=term-missing --cov-fail-under=95
+uv build && uv run twine check dist/*
 uv run python scripts/check_traceability.py
 ```
 
@@ -58,8 +68,22 @@ uv run python scripts/check_traceability.py
 | `refresh_token_hash` | `test_FEAT_003_1_unicite_refresh_token` |
 | JWK `kid` | `test_FEAT_003_1_unicite_kid` |
 
+## CI GitHub (PR #9)
+
+| Job | Résultat | Run |
+|-----|----------|-----|
+| Qualité + Typage + Sécurité | PASS | [28350976309](https://github.com/baobabgit/baobab-auth-database/actions/runs/28350976309) |
+| Tests + couverture ≥ 95 % | PASS | idem |
+| Traçabilité | PASS | idem |
+| Politique de commit | PASS | idem |
+| Build package | PASS | idem |
+
+PR : [baobabgit/baobab-auth-database#9](https://github.com/baobabgit/baobab-auth-database/pull/9)
+(validation rétroactive `bl/005-repositories-sync` → `version/v0.1.0-pre-bl005`, mergée
+2026-06-29).
+
 ## Observations QA
 
 - SQLite retourne des datetimes naïfs : tests comparent les champs métier, pas
   l'égalité stricte des entités sur les timestamps.
-- `make all` non exécuté (absence de `make` Windows) ; équivalent commandes ci-dessus.
+- `uv run nox -s all` exécuté localement (2026-06-29, 18 s, PASS).

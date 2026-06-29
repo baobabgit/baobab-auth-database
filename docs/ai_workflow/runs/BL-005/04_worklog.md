@@ -56,12 +56,19 @@ Exécution gate U2 (2026-06-29) :
 
 Verdict : **QA_PASSED**. Voir `05_tests_report.md`.
 
-**Handoff QA → Relecteur** : revue technique.
+---
+
+## 2026-06-29 — Clôture écarts process (post-revue)
+
+- `uv run nox -s all` : PASS (équivalent `make all`, 75 tests, 96,34 %).
+- PR [#9](https://github.com/baobabgit/baobab-auth-database/pull/9) : CI verte, mergée
+  (validation rétroactive BL-005).
+- Commit format black : `69f0ef5` sur `bl/005-repositories-sync`.
 
 ---
 
 ## 2026-06-29 — Relecteur (In review)
 
-Voir `06_review.md`. Verdict : **APPROUVÉ** (observations process PR).
+Voir `06_review.md`. Verdict : **APPROUVÉ** (écarts process clos).
 
 **Handoff Relecteur → BL-006** : voir `07_handoff.md`.

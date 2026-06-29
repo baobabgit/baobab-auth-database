@@ -6,7 +6,10 @@ current_role: relecteur
 previous_role: qa
 branch: version/v0.1.0
 started_at: "2026-06-28T21:00:00Z"
-updated_at: "2026-06-29T00:00:00Z"
+updated_at: "2026-06-29T05:40:00Z"
+pull_request: "https://github.com/baobabgit/baobab-auth-database/pull/9"
+ci_run: "https://github.com/baobabgit/baobab-auth-database/actions/runs/28350976309"
+make_all: "uv run nox -s all — PASS (2026-06-29)"
 gates:
   spec: passed
   design: passed
@@ -14,6 +17,7 @@ gates:
   qa: passed
   review: passed
   security: skipped
+  ci: passed
 features:
   - FEAT-003.1
 user_stories:

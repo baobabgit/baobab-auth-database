@@ -35,8 +35,9 @@
 
 ## Observations (non bloquantes)
 
-1. **PR GitHub** : merge direct `bl/` → `version/` sans PR CI — dette process
-   (à formaliser pour BL-006+).
+1. **PR GitHub** : validation rétroactive via
+   [#9](https://github.com/baobabgit/baobab-auth-database/pull/9) — CI verte, mergée
+   2026-06-29. Merge direct initial `bl/` → `version/` documenté ; process strict dès BL-006.
 2. **Export `__all__`** : repositories hors contrat public — OK pour BL-005, suivi BL-008.
 3. **PostgreSQL** : non testé en natif — MVP SQLite ; intégration PG → BL-008.
 4. **Datetime SQLite** : tzinfo perdu au roundtrip — documenté QA ; acceptable MVP.

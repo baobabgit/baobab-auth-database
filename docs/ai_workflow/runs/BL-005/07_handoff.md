@@ -39,9 +39,15 @@ Blocages : aucun.
 - Exposer propriétés `users`, `profiles`, `roles`, etc. sur le UoW.
 - Tests commit / rollback transactionnels.
 
+## Process (écarts clos 2026-06-29)
+
+- `uv run nox -s all` : PASS.
+- PR [#9](https://github.com/baobabgit/baobab-auth-database/pull/9) : CI verte, mergée.
+- Release manager : hors périmètre (version non `RELEASE_READY`).
+
 ## Dette process
 
-- Ouvrir PR `bl/006-...` → `version/v0.1.0` avec CI verte (retour process strict).
+- Ouvrir PR `bl/006-...` → `version/v0.1.0` **avant** merge (process strict dès BL-006).
 
 ## Commandes de reprise
 
