@@ -6,8 +6,8 @@ active_role: null
 active_tool: null
 branch: version/v0.1.0
 locked_at: null
-last_heartbeat_at: "2026-06-28T22:00:00Z"
+last_heartbeat_at: "2026-06-29T00:15:00Z"
 expires_at: null
 lease_duration_minutes: 120
 status: IDLE
-last_session_note: "BL-005 repositories sync livre et merge sur version/v0.1.0"
+last_session_note: "BL-005 workflow strict complete (PO/Arch/QA/Reviewer)"

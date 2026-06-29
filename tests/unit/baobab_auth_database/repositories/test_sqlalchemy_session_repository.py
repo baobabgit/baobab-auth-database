@@ -39,9 +39,7 @@ class TestSqlAlchemySessionRepository:
         assert restored is not None
         assert restored.refresh_token_id == auth_session.refresh_token_id
         assert restored.status == auth_session.status
-        assert (
-            repo.get_by_refresh_token_id(auth_session.refresh_token_id) == restored
-        )
+        assert repo.get_by_refresh_token_id(auth_session.refresh_token_id) == restored
         assert repo.get_active_by_user(auth_session.user_id) == [restored]
 
     def test_FEAT_003_1_get_absent(self, db_session: OrmSession, now_utc) -> None:
