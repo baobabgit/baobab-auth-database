@@ -24,7 +24,16 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 - ``AuthCatalogBootstrap`` : resync mappings rôles système + enregistrement version.
 - ``SqlAlchemyAuthUnitOfWork`` : repository ``catalog_versions``.
 
+## [0.1.1] - 2026-06-29
+
+### Corrigé
+
+- Republication PyPI : échec de déploiement sur le tag ``v0.1.0`` ; release
+  publiée sous le tag Git ``v0.1.1`` (artefacts identiques au MVP ``0.1.0``).
+
 ## [0.1.0] - 2026-06-29
+
+> Non publiée sur PyPI — voir ``0.1.1`` pour la release installable.
 
 ### Ajouté
 

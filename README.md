@@ -1,9 +1,9 @@
 # baobab-auth-database
 
 [![CI](https://github.com/baobabgit/baobab-auth-database/actions/workflows/ci.yml/badge.svg)](https://github.com/baobabgit/baobab-auth-database/actions/workflows/ci.yml)
-[![Release](https://github.com/your-org/your-repo/actions/workflows/release.yml/badge.svg)](https://github.com/your-org/your-repo/actions/workflows/release.yml)
-[![PyPI version](https://img.shields.io/pypi/v/example-package.svg)](https://pypi.org/project/example-package/)
-[![Python versions](https://img.shields.io/pypi/pyversions/example-package.svg)](https://pypi.org/project/example-package/)
+[![Release](https://github.com/baobabgit/baobab-auth-database/actions/workflows/release.yml/badge.svg)](https://github.com/baobabgit/baobab-auth-database/actions/workflows/release.yml)
+[![PyPI version](https://img.shields.io/pypi/v/baobab-auth-database.svg)](https://pypi.org/project/baobab-auth-database/)
+[![Python versions](https://img.shields.io/pypi/pyversions/baobab-auth-database.svg)](https://pypi.org/project/baobab-auth-database/)
 <!-- Badge Read the Docs : à réactiver une fois l'hébergement de doc configuré.
 [![Documentation Status](https://readthedocs.org/projects/your-repo/badge/?version=latest)](https://your-repo.readthedocs.io/en/latest/)
 -->

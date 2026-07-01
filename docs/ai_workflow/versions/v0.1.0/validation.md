@@ -11,7 +11,7 @@
 
 ## Résultat
 
-Status : **INTERNAL_VALIDATED** (2026-06-29)
+Status : **RELEASED** (2026-06-29)
 
-Prochaine étape : INTEGRATION_PENDING côté écosystème (autres consommateurs core),
-puis RELEASE_READY → merge `version/v0.1.0` → `main` → tag.
+Publication PyPI : **0.1.1** (tag Git `v0.1.1`). Le tag `v0.1.0` n'a pas été
+publié sur PyPI.
