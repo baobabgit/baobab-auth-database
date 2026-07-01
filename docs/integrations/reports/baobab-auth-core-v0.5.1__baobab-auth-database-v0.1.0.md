@@ -1,8 +1,8 @@
-# Rapport d'intégration — baobab-auth-core v0.5.1 ↔ baobab-auth-database v0.1.0
+# Rapport d'intégration — baobab-auth-core v0.5.1 ↔ baobab-auth-database v0.1.1
 
 **Date** : 2026-06-29  
 **Producteur** : baobab-auth-core `0.5.1` (PyPI) / branche `version/v0.5.1`  
-**Consommateur** : baobab-auth-database `v0.1.0` / branche `version/v0.1.0`  
+**Consommateur** : baobab-auth-database `v0.1.1` (PyPI) / jalon dev `version/v0.1.0`  
 **Verdict** : **PASSED**
 
 ## Contexte

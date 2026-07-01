@@ -114,7 +114,8 @@ Ce package valide ``baobab-auth-core>=0.5.1,<0.6.0`` via :
    uv run nox -s all
 
 Rapport produit :
-``docs/integrations/reports/baobab-auth-core-v0.5.1__baobab-auth-database-v0.1.0.md``
+``docs/integrations/reports/baobab-auth-core-v0.5.1__baobab-auth-database-v0.1.1.md``
+(validation jalon v0.1.0 ; release PyPI **0.1.1**).
 
 Voir aussi
 ----------

@@ -2,7 +2,8 @@
 # Mise à jour par le Release Manager lors de chaque validation d'intégration.
 
 library: baobab-auth-database
-version: v0.1.0
+version: v0.1.1
+pypi_version: "0.1.1"
 
 validated_consumers: []
 
@@ -16,7 +17,7 @@ validated_dependencies:
       - import_tests
       - contract_tests
       - integration_tests
-    report: docs/integrations/reports/baobab-auth-core-v0.5.1__baobab-auth-database-v0.1.0.md
+    report: docs/integrations/reports/baobab-auth-core-v0.5.1__baobab-auth-database-v0.1.1.md
     notes: >
       Ports UserRepository, RoleRepository, PermissionRepository,
       SessionRepository, AuditRepository, UnitOfWork ; bootstrap

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "baobab-auth-database"
-version = "0.1.0"
+version = "0.1.1"
 description = "Couche de persistance SQLAlchemy pour l'écosystème Baobab Auth."
 readme = "README.md"
 requires-python = ">=3.13"
